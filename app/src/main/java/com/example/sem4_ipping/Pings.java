@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -30,7 +31,7 @@ public class Pings extends AppCompatActivity {
 
         ping = "Buscando\n";
 
-        //max for recibido o perdido
+        //max para recibido o perdido
         maxIp = 0;
 
         //main IP
@@ -43,23 +44,20 @@ public class Pings extends AppCompatActivity {
                             //check connection
                             maxIp++;
                             InetAddress ipAddress = InetAddress.getByName(Ips);
+                            Log.d("conectado","conectado"+ipAddress);
 
                             conectado = ipAddress.isReachable(500);
 
+                            if (conectado == true) {
+                                ping += "Recibido\n";
+                            } else {
+                                ping += "Perdido\n";
+                            }
 
-
-                            //visual changes on textview
+                            //cambio visual del TextView
                             runOnUiThread(
-                                    ()-> {
-
-                                        if (conectado) {
-                                            ping += "Recibido\n";
-                                        } else {
-                                            ping += "Perdido\n";
-                                        }
-                                    /*()->{
+                                    ()->{
                                         pings.setText(ping);
-                                    }*/
                                     });
 
                         } catch (UnknownHostException e) {

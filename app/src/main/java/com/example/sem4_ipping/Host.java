@@ -15,8 +15,9 @@ public class Host extends AppCompatActivity {
 
     private TextView hosts;
     private Button back2Btn;
+    //ultimo digiito de la IP
     private int Spot = 1;
-    private String localIp;
+    private String localIp, myHost;
     private Boolean conectado;
 
 
@@ -33,21 +34,30 @@ public class Host extends AppCompatActivity {
                     while(Spot < 255){
 
                         try {
-                            //comprobacion y barrido de todas las id cambiando el ultimo digito
+                            //comprobacion y barrido de todas las ip cambiando el ultimo digito
                             localIp = "192.168.2."+Spot;
-
                             InetAddress inetAddress = InetAddress.getByName(localIp);
-                            String myHost = inetAddress.getHostAddress();
 
+                            myHost = inetAddress.getHostAddress();
 
-                            conectado = inetAddress.isReachable(500);
+                            //check si conecta la IP
+                            conectado = inetAddress.isReachable(1000);
+
+                            if(conectado){
+                                myHost = inetAddress.getHostAddress();
+                            }
 
                             //cambio visual en el textview
+                            //manera diferente a la de Ping para ver si asi funciona en el Uithread
+                            /*if(conectado == true){
+                                hosts.append.isReachable(1000);
+                            }*/
+
+
                             runOnUiThread(
                                     ()->{
-                                        if(conectado == true){
-                                            hosts.append(""+localIp+"\n");
-                                        }
+
+                                        hosts.setText(myHost);
 
                                     }
                             );

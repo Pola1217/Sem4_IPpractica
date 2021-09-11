@@ -28,13 +28,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //IP pings
+        //Referencias
+
+        //IP numeros
         ping1 = findViewById(R.id.ip1);
         ping2 = findViewById(R.id.ip2);
         ping3 = findViewById(R.id.ip3);
         ping4 = findViewById(R.id.ip4);
 
-        //my IP
+        //mi IP
         //192.168.100.111
         myIP = findViewById(R.id.myIP);
 
@@ -49,14 +51,13 @@ public class MainActivity extends AppCompatActivity {
 
                 (view)->{
 
+                    //trae lo que se escriba en la ACT Pings
                     Sip1 = ping1.getText().toString();
                     Sip2 = ping2.getText().toString();
                     Sip3 = ping3.getText().toString();
                     Sip4 = ping4.getText().toString();
 
                     ip = Sip1+"."+Sip2+"."+Sip3+"."+Sip4;
-
-                    //brings text from the IPs screen
 
                     Intent i = new Intent(this, Pings.class);
 
@@ -87,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         new Thread(
                 ()->{
                     try {
-                        //Get computer IP
+                        //IP del mi consola (emulador)
                         InetAddress myIPs = InetAddress.getLocalHost();
 
                         runOnUiThread(
