@@ -16,7 +16,7 @@ public class Pings extends AppCompatActivity {
 
     private TextView pings;
     private Button backBtn;
-    private String Ips;
+    private String ip;
     private String ping;
     private int maxIp;
     private Boolean conectado;
@@ -35,7 +35,7 @@ public class Pings extends AppCompatActivity {
         maxIp = 0;
 
         //main IP
-        Ips = getIntent().getExtras().getString("Ips");
+        ip = getIntent().getExtras().getString("ip");
 
        new Thread(
                 () -> {
@@ -43,10 +43,10 @@ public class Pings extends AppCompatActivity {
                         try {
                             //check connection
                             maxIp++;
-                            InetAddress ipAddress = InetAddress.getByName(Ips);
+                            InetAddress ipAddress = InetAddress.getByName(ip);
                             Log.d("conectado","conectado"+ipAddress);
 
-                            conectado = ipAddress.isReachable(500);
+                            conectado = ipAddress.isReachable(9000);
 
                             if (conectado == true) {
                                 ping += "Recibido\n";

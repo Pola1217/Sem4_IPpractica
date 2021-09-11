@@ -35,7 +35,7 @@ public class Host extends AppCompatActivity {
 
                         try {
                             //comprobacion y barrido de todas las ip cambiando el ultimo digito
-                            localIp = "192.168.2."+Spot;
+                            localIp = "192.168.100."+Spot;
                             InetAddress inetAddress = InetAddress.getByName(localIp);
 
                             myHost = inetAddress.getHostAddress();

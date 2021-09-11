@@ -60,8 +60,7 @@ public class MainActivity extends AppCompatActivity {
                     ip = Sip1+"."+Sip2+"."+Sip3+"."+Sip4;
 
                     Intent i = new Intent(this, Pings.class);
-
-                    i.putExtra("ips", ip);
+                    i.putExtra("ip", ip);
 
                     startActivity(i);
 
